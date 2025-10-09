@@ -1,5 +1,7 @@
 package com.objectcollections;
 
+import java.util.Objects;
+
 public class StudentInfo implements Comparable<StudentInfo> {
 	private int maths;
 	private int physics;
@@ -46,4 +48,24 @@ If you want the original list1 preserved and also want the top N, using new Prio
 	}
 	// Need to implement a comparable strategy to do otherwise it will throw error
 	//this compareTo method will be called by the priority queue so this time it won't throw the error
+	@Override
+	public int hashCode() {
+		return Objects.hash(maths, physics);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentInfo other = (StudentInfo) obj;
+		return maths == other.maths && physics == other.physics;
+	}
+	
+	
+	//This is for the Set class
+	
 }
